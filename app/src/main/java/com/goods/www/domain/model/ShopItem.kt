@@ -1,11 +1,10 @@
 package com.goods.www.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.goods.www.utils.Brands
 
-@Parcelize
 data class ShopItem(
     val name: String,
-    val img: Int,
-    val content: String
-) : Parcelable
+    val type: Brands,
+    val latitude: Double,
+    val longitude: Double,
+)

@@ -30,9 +30,8 @@
         android:name="com.goods.www.presentation.MartMapFragment"
         tools:layout="@layout/fragment_mart_map" >
         <argument
-            android:name="shopItem"
-            app:argType="com.goods.www.domain.model.ShopItem"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            android:name="brandItem"
+            app:argType="com.goods.www.domain.model.BrandItem"
+            app:nullable="true" />
     </fragment>
 </navigation>

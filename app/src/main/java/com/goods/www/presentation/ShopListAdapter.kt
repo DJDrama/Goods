@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.goods.www.databinding.ItemLayoutMarketBinding
-import com.goods.www.domain.model.ShopItem
+import com.goods.www.domain.model.BrandItem
 
-class ShopListAdapter(private val onShopClicked: (ShopItem) -> Unit) :
-    ListAdapter<ShopItem, ShopListAdapter.ShopItemViewHolder>(ShopItemDiffCallback) {
+class ShopListAdapter(private val onShopClicked: (BrandItem) -> Unit) :
+    ListAdapter<BrandItem, ShopListAdapter.ShopItemViewHolder>(ShopItemDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         return ShopItemViewHolder(
@@ -26,9 +26,9 @@ class ShopListAdapter(private val onShopClicked: (ShopItem) -> Unit) :
 
     class ShopItemViewHolder(
         private val binding: ItemLayoutMarketBinding,
-        private val onShopClicked: (ShopItem) -> Unit,
+        private val onShopClicked: (BrandItem) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
-        private var shopItem: ShopItem? = null
+        private var shopItem: BrandItem? = null
 
         init {
             binding.root.setOnClickListener {
@@ -38,7 +38,7 @@ class ShopListAdapter(private val onShopClicked: (ShopItem) -> Unit) :
             }
         }
 
-        fun bind(shopItem: ShopItem) {
+        fun bind(shopItem: BrandItem) {
             this.shopItem = shopItem
             binding.ivShop.setImageResource(shopItem.img)
             binding.tvTitle.text = shopItem.name
@@ -46,12 +46,12 @@ class ShopListAdapter(private val onShopClicked: (ShopItem) -> Unit) :
         }
     }
 
-    companion object ShopItemDiffCallback : DiffUtil.ItemCallback<ShopItem>() {
-        override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
+    companion object ShopItemDiffCallback : DiffUtil.ItemCallback<BrandItem>() {
+        override fun areItemsTheSame(oldItem: BrandItem, newItem: BrandItem): Boolean {
             return oldItem.name == newItem.name && oldItem.img == newItem.img
         }
 
-        override fun areContentsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
+        override fun areContentsTheSame(oldItem: BrandItem, newItem: BrandItem): Boolean {
             return oldItem == newItem
         }
     }

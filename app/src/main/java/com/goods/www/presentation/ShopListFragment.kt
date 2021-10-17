@@ -37,7 +37,7 @@ class ShopListFragment : Fragment(R.layout.fragment_shop_list) {
     private fun initRecyclerView() {
         shopListAdapter = ShopListAdapter {
             val action = ShopListFragmentDirections.actionShopListFragmentToMartMapFragment(
-                shopItem = it
+                brandItem = it
             )
             findNavController().navigate(action)
         }
