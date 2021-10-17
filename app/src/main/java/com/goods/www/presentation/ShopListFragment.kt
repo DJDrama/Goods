@@ -2,6 +2,7 @@ package com.goods.www.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,8 @@ class ShopListFragment : Fragment(R.layout.fragment_shop_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentShopListBinding.bind(view)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
         initViews()
 
         subscribeToObservers()
@@ -26,7 +29,7 @@ class ShopListFragment : Fragment(R.layout.fragment_shop_list) {
 
     private fun initViews() {
         binding.tvNearbyMart.setOnClickListener {
-            findNavController().navigate(R.id.action_introSplashFragment_to_shopListFragment)
+            findNavController().navigate(R.id.action_shopListFragment_to_martMapFragment)
         }
         initRecyclerView()
     }

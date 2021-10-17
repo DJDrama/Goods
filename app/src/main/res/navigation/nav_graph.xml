@@ -28,7 +28,6 @@
     <fragment
         android:id="@+id/martMapFragment"
         android:name="com.goods.www.presentation.MartMapFragment"
-        android:label="MartMapFragment"
         tools:layout="@layout/fragment_mart_map" >
         <argument
             android:name="shopItem"
