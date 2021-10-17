@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.goods.www.R
 import com.goods.www.databinding.FragmentShopListBinding
 
@@ -18,13 +19,24 @@ class ShopListFragment : Fragment(R.layout.fragment_shop_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentShopListBinding.bind(view)
-        initRecyclerView()
+        initViews()
+
         subscribeToObservers()
+    }
+
+    private fun initViews() {
+        binding.tvNearbyMart.setOnClickListener {
+            findNavController().navigate(R.id.action_introSplashFragment_to_shopListFragment)
+        }
+        initRecyclerView()
     }
 
     private fun initRecyclerView() {
         shopListAdapter = ShopListAdapter {
-
+            val action = ShopListFragmentDirections.actionShopListFragmentToMartMapFragment(
+                shopItem = it
+            )
+            findNavController().navigate(action)
         }
         binding.recyclerView.apply {
             adapter = shopListAdapter

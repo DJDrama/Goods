@@ -20,5 +20,20 @@
         android:id="@+id/shopListFragment"
         android:name="com.goods.www.presentation.ShopListFragment"
         android:label="ShopListFragment"
-        tools:layout="@layout/fragment_shop_list" />
+        tools:layout="@layout/fragment_shop_list">
+        <action
+            android:id="@+id/action_shopListFragment_to_martMapFragment"
+            app:destination="@id/martMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/martMapFragment"
+        android:name="com.goods.www.presentation.MartMapFragment"
+        android:label="MartMapFragment"
+        tools:layout="@layout/fragment_mart_map" >
+        <argument
+            android:name="shopItem"
+            app:argType="com.goods.www.domain.model.ShopItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
