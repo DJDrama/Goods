@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/introSplashFragment">
+
+    <fragment
+        android:id="@+id/introSplashFragment"
+        android:name="com.goods.www.presentation.IntroSplashFragment"
+        android:label="IntroSplashFragment"
+        tools:layout="@layout/fragment_intro_splash">
+        <action
+            android:id="@+id/action_introSplashFragment_to_shopListFragment"
+            app:destination="@id/shopListFragment"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopListFragment"
+        android:name="com.goods.www.presentation.ShopListFragment"
+        android:label="ShopListFragment"
+        tools:layout="@layout/fragment_shop_list" />
+</navigation>
