@@ -108,7 +108,7 @@ class MapViewModel : ViewModel() {
         _brandItem.value = brandItem
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    @ExperimentalCoroutinesApi
     fun getMarts(brandItem: BrandItem?) {
         val brand = when (brandItem?.name) {
             "다이소" -> Brands.DAISO

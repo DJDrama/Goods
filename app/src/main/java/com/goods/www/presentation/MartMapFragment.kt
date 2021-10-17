@@ -16,10 +16,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.goods.www.R
 import com.goods.www.databinding.FragmentMartMapBinding
 import com.goods.www.domain.model.LocationItem
+import com.goods.www.domain.model.ShopItem
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -68,10 +70,9 @@ class MartMapFragment : Fragment(R.layout.fragment_mart_map), OnMapReadyCallback
 
                     mapViewModel.setCurrentLocation(
                         LocationItem(
-                            id = "CURRENT_LOCATION",
+                            documentId = "Current Location",
                             name = "현재 위치",
                             latLng = LatLng(location.latitude, location.longitude),
-                            address = ""
                         )
                     )
                     //just do once so break
@@ -175,11 +176,10 @@ class MartMapFragment : Fragment(R.layout.fragment_mart_map), OnMapReadyCallback
             it?.let { boolValue ->
                 if (boolValue) {
                     mapViewModel.getLocationItem()?.let { locationItem ->
-                        // TODO
-                        // val action = MapFragmentDirections.actionMapFragmentToMapDetailFragment(
-                        //     locationItem
-                        // )
-                        // findNavController().navigate(action)
+                        val action = MartMapFragmentDirections.actionMartMapFragmentToShopDetailFragment(
+                            documentId = locationItem.documentId
+                        )
+                        findNavController().navigate(action)
                         mapViewModel.setInfoWindowClicked(false)
                     }
                 }
@@ -264,10 +264,9 @@ class MartMapFragment : Fragment(R.layout.fragment_mart_map), OnMapReadyCallback
                 location?.let {
                     mapViewModel.setCurrentLocation(
                         LocationItem(
-                            id = "CURRENT_LOCATION",
+                            documentId = "Current Location",
                             name = "현재 위치",
                             latLng = LatLng(location.latitude, location.longitude),
-                            address = ""
                         )
                     )
                 } ?: setLocationSettings()
@@ -378,23 +377,20 @@ class MartMapFragment : Fragment(R.layout.fragment_mart_map), OnMapReadyCallback
         p0?.let {
             if (it.title == "현재 위치") return
 
-            // var item = it.tag
-            // if (item is DangerousPlaces) {
-            //     mapViewModel.setCurrentLocation(
-            //         LocationItem(
-            //             item.documentId,
-            //             item.name,
-            //             LatLng(item.latitude.toDouble(), item.longitude.toDouble()),
-            //             item.address,
-            //             item.phone,
-            //             item.image
-            //         )
-            //     )
-            // } else {
-            //     item = item as LocationItem
-            //     mapViewModel.setCurrentLocation(item)
-            // }
-            // mapViewModel.setInfoWindowClicked(true)
+            var item = it.tag
+            if (item is ShopItem) {
+                mapViewModel.setCurrentLocation(
+                    LocationItem(
+                        documentId = item.documentId,
+                        name = item.name,
+                        latLng = LatLng(item.latitude, item.longitude),
+                    )
+                )
+            } else {
+                item = item as LocationItem
+                mapViewModel.setCurrentLocation(item)
+            }
+            mapViewModel.setInfoWindowClicked(true)
         }
     }
 

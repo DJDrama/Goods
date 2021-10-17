@@ -3,15 +3,17 @@ package com.goods.www.datasource.model
 import com.goods.www.domain.model.ShopItem
 import com.goods.www.utils.Brands
 
-data class ShopItemDto(
-    var name: String="",
-    var type: String="",
-    var latitude: String="",
-    var longitude: String="",
+data class ShopDto(
+    var documentId: String = "",
+    var name: String = "",
+    var type: String = "",
+    var latitude: String = "",
+    var longitude: String = "",
 )
 
-fun ShopItemDto.toDomainModel(): ShopItem {
+fun ShopDto.toDomainModel(): ShopItem {
     return ShopItem(
+        documentId = documentId,
         name = name,
         type = when (type) {
             "daiso" -> Brands.DAISO
@@ -27,7 +29,7 @@ fun ShopItemDto.toDomainModel(): ShopItem {
     )
 }
 
-fun List<ShopItemDto>.toDomainList(): List<ShopItem> {
+fun List<ShopDto>.toDomainList(): List<ShopItem> {
     return map {
         it.toDomainModel()
     }

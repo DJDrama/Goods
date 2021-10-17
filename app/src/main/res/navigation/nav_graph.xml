@@ -33,5 +33,19 @@
             android:name="brandItem"
             app:argType="com.goods.www.domain.model.BrandItem"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_martMapFragment_to_shopDetailFragment"
+            app:destination="@id/shopDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopDetailFragment"
+        tools:layout="@layout/fragment_shop_detail"
+        android:name="com.goods.www.presentation.ShopDetailFragment"
+        android:label="ShopDetailFragment" >
+        <argument
+            android:name="documentId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
