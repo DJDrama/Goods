@@ -3,20 +3,22 @@ package com.goods.www.datasource.model
 import com.goods.www.domain.model.Item
 
 data class ItemDto(
-    var documentId: String="",
+    var documentId: String = "",
     var img: String = "",
-    var location: String = "",
+    var position: Int = 0,
     var name: String = "",
     var price: String = "",
+    var type: String = "",
 )
 
 fun ItemDto.toDomainModel(): Item {
     return Item(
         documentId = documentId,
         img = img,
-        location = location,
+        position = position,
         name = name,
-        price = price
+        price = price,
+        type = type
     )
 }
 

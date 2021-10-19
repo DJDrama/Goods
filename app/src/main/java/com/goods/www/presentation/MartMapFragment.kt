@@ -177,7 +177,8 @@ class MartMapFragment : Fragment(R.layout.fragment_mart_map), OnMapReadyCallback
                 if (boolValue) {
                     mapViewModel.getLocationItem()?.let { locationItem ->
                         val action = MartMapFragmentDirections.actionMartMapFragmentToShopDetailFragment(
-                            documentId = locationItem.documentId
+                            documentId = locationItem.documentId,
+                            title = locationItem.name
                         )
                         findNavController().navigate(action)
                         mapViewModel.setInfoWindowClicked(false)

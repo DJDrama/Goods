@@ -2,9 +2,12 @@ package com.goods.www.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.goods.www.R
 import com.goods.www.databinding.FragmentShopDetailBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,18 +21,37 @@ class ShopDetailFragment : Fragment(R.layout.fragment_shop_detail) {
     private val navArgs by navArgs<ShopDetailFragmentArgs>()
     private val shopDetailViewModel by viewModels<ShopDetailViewModel>()
 
+    private lateinit var itemListAdapter: ItemListAdapter
+
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentShopDetailBinding.bind(view)
         shopDetailViewModel.getCategories(navArgs.documentId ?: "")
+
+        initViews()
         subscribeToObservers()
     }
 
-    private fun subscribeToObservers() {
-        shopDetailViewModel.items.observe(viewLifecycleOwner){
-            it?.let{
+    private fun initViews() {
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = navArgs.title
+        itemListAdapter = ItemListAdapter {
+            val action = ShopDetailFragmentDirections.actionShopDetailFragmentToItemMapFragment(
+                item = it
+            )
+            findNavController().navigate(action)
+        }
+        binding.recyclerView.apply {
+            adapter = itemListAdapter
+            addItemDecoration(DividerItemDecoration(requireContext(),
+                DividerItemDecoration.VERTICAL))
+        }
+    }
 
+    private fun subscribeToObservers() {
+        shopDetailViewModel.items.observe(viewLifecycleOwner) {
+            it?.let {
+                itemListAdapter.submitList(it)
             }
         }
     }
