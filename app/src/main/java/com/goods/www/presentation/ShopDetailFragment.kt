@@ -3,6 +3,7 @@ package com.goods.www.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -42,15 +43,22 @@ class ShopDetailFragment : Fragment(R.layout.fragment_shop_detail) {
             findNavController().navigate(action)
         }
         binding.recyclerView.apply {
+            itemAnimator = null
             adapter = itemListAdapter
             addItemDecoration(DividerItemDecoration(requireContext(),
                 DividerItemDecoration.VERTICAL))
+        }
+
+        binding.edtSearch.addTextChangedListener {
+            shopDetailViewModel.search(it.toString())
         }
     }
 
     private fun subscribeToObservers() {
         shopDetailViewModel.items.observe(viewLifecycleOwner) {
             it?.let {
+                if(::itemListAdapter.isInitialized)
+                    itemListAdapter.submitList(null)
                 itemListAdapter.submitList(it)
             }
         }

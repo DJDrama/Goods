@@ -1,5 +1,6 @@
 package com.goods.www.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,10 +17,29 @@ class ShopDetailViewModel : ViewModel() {
     val items: LiveData<List<Item>>
         get() = _items
 
+    private val originalList = mutableListOf<Item>()
+
     @ExperimentalCoroutinesApi
     fun getCategories(documentId: String) {
         FirestoreRepository.getAllItems(documentId).onEach {
             _items.value = it
+
+            if (originalList.isNotEmpty())
+                originalList.clear()
+            originalList.addAll(it)
         }.launchIn(viewModelScope)
+    }
+
+    fun search(query: String? = null) {
+
+        query?.let {
+            val tempList = originalList
+            val newList = tempList.filter { item ->
+                item.name.contains(it)
+            }
+            _items.value = newList
+        } ?: run {
+            _items.value = originalList
+        }
     }
 }
