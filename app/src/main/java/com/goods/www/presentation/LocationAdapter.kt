@@ -1,13 +1,14 @@
 package com.goods.www.presentation
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.goods.www.databinding.ItemLayoutLocationBinding
 
-class LocationAdapter: ListAdapter<Int, LocationAdapter.LocationViewHolder>(LocationDiffCallback) {
+class LocationAdapter: ListAdapter<String, LocationAdapter.LocationViewHolder>(LocationDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
         return LocationViewHolder(
@@ -21,16 +22,17 @@ class LocationAdapter: ListAdapter<Int, LocationAdapter.LocationViewHolder>(Loca
 
 
     class LocationViewHolder(private val binding: ItemLayoutLocationBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(position: Int){
+        fun bind(type: String){
+            binding.tvType.text = type
         }
     }
 
-    companion object LocationDiffCallback: DiffUtil.ItemCallback<Int>(){
-        override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+    companion object LocationDiffCallback: DiffUtil.ItemCallback<String>(){
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
     }

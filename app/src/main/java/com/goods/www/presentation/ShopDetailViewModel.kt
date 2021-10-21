@@ -19,10 +19,23 @@ class ShopDetailViewModel : ViewModel() {
 
     private val originalList = mutableListOf<Item>()
 
+    private val _categorySet = MutableLiveData<Set<String>>()
+    val categorySet get() = _categorySet
+
+    private val _currentItem = MutableLiveData<Item>()
+    val currentItem: LiveData<Item> get()= _currentItem
+
     @ExperimentalCoroutinesApi
-    fun getCategories(documentId: String) {
+    fun getItems(documentId: String) {
         FirestoreRepository.getAllItems(documentId).onEach {
             _items.value = it
+
+            // Add Type to set
+            val set = mutableSetOf<String>()
+            it.forEach { item->
+                set.add(item.type)
+            }
+            _categorySet.value = set
 
             if (originalList.isNotEmpty())
                 originalList.clear()
@@ -41,5 +54,9 @@ class ShopDetailViewModel : ViewModel() {
         } ?: run {
             _items.value = originalList
         }
+    }
+
+    fun setCurrentItem(item: Item){
+        _currentItem.value = item
     }
 }

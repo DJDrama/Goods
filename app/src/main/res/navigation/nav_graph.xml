@@ -56,9 +56,5 @@
     <fragment
         android:id="@+id/itemMapFragment"
         android:name="com.goods.www.presentation.ItemMapFragment"
-        tools:layout="@layout/fragment_item_map">
-        <argument
-            android:name="item"
-            app:argType="com.goods.www.domain.model.Item" />
-    </fragment>
+        tools:layout="@layout/fragment_item_map"/>
 </navigation>
