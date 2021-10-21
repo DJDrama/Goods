@@ -30,8 +30,8 @@
         <ImageView
             android:id="@+id/iv_1"
             android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -42,8 +42,8 @@
         <ImageView
             android:id="@+id/iv_2"
             android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_1"
@@ -53,8 +53,8 @@
         <ImageView
             android:id="@+id/iv_3"
             android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_2"
@@ -63,9 +63,9 @@
 
         <ImageView
             android:id="@+id/iv_4"
-            android:layout_width="wrap_content"
+            android:layout_width="24dp"
             android:visibility="invisible"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_3"
@@ -74,8 +74,8 @@
 
         <ImageView
             android:id="@+id/iv_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:visibility="invisible"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +86,9 @@
 
         <ImageView
             android:id="@+id/iv_6"
-            android:layout_width="wrap_content"
+            android:layout_width="24dp"
             android:visibility="invisible"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_7"
             app:layout_constraintEnd_toStartOf="@+id/iv_7"
             app:layout_constraintHorizontal_bias="0.5"
@@ -98,8 +98,8 @@
         <ImageView
             android:id="@+id/iv_7"
             android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_10"
             app:layout_constraintEnd_toStartOf="@+id/iv_8"
             app:layout_constraintHorizontal_bias="0.5"
@@ -108,8 +108,8 @@
 
         <ImageView
             android:id="@+id/iv_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_10"
             app:layout_constraintEnd_toStartOf="@+id/iv_10"
@@ -119,8 +119,8 @@
 
         <ImageView
             android:id="@+id/iv_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_6"
             app:layout_constraintEnd_toStartOf="@+id/iv_6"
@@ -131,8 +131,8 @@
 
         <ImageView
             android:id="@+id/iv_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:visibility="invisible"
             android:layout_margin="8dp"
             android:layout_marginBottom="8dp"

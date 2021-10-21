@@ -38,7 +38,7 @@ class ShopDetailFragment : Fragment(R.layout.fragment_shop_detail) {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = navArgs.title
         itemListAdapter = ItemListAdapter {
             shopDetailViewModel.setCurrentItem(it)
-            findNavController().navigate(R.id.action_shopListFragment_to_martMapFragment)
+            findNavController().navigate(R.id.action_shopDetailFragment_to_itemMapFragment)
         }
         binding.recyclerView.apply {
             itemAnimator = null

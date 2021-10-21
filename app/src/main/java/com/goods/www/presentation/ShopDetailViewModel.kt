@@ -19,11 +19,11 @@ class ShopDetailViewModel : ViewModel() {
 
     private val originalList = mutableListOf<Item>()
 
-    private val _categorySet = MutableLiveData<Set<String>>()
+    private val _categorySet = MutableLiveData<Set<Pair<String, Int>>>()
     val categorySet get() = _categorySet
 
     private val _currentItem = MutableLiveData<Item>()
-    val currentItem: LiveData<Item> get()= _currentItem
+    val currentItem: LiveData<Item> get() = _currentItem
 
     @ExperimentalCoroutinesApi
     fun getItems(documentId: String) {
@@ -31,9 +31,9 @@ class ShopDetailViewModel : ViewModel() {
             _items.value = it
 
             // Add Type to set
-            val set = mutableSetOf<String>()
-            it.forEach { item->
-                set.add(item.type)
+            val set = mutableSetOf<Pair<String, Int>>()
+            it.forEach { item ->
+                set.add(item.type to -1)
             }
             _categorySet.value = set
 
@@ -56,7 +56,19 @@ class ShopDetailViewModel : ViewModel() {
         }
     }
 
-    fun setCurrentItem(item: Item){
+    fun setCurrentItem(item: Item) {
         _currentItem.value = item
+
+        val newSet = mutableSetOf<Pair<String, Int>>()
+        val tempSet = _categorySet.value
+        tempSet?.forEachIndexed { index, pair ->
+            if (pair.first == item.type) {
+                val temp = pair.first to item.position
+                newSet.add(temp)
+            }else {
+                newSet.add(pair)
+            }
+        }
+        _categorySet.value = newSet
     }
 }
